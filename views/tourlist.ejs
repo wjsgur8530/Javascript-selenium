@@ -1,0 +1,219 @@
+<%- include ('template/head.ejs') %>
+<%- include ('template/header.ejs') %>
+ <!-- 관광지 -->
+ <section class="page-section portfolio" id="portfolio">
+    <div class="container">
+        <!-- Portfolio Section Heading-->
+        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">TOURLIST</h2>
+        <!-- Icon Divider-->
+        <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+        <!-- Portfolio Grid Items-->
+        <div class="row justify-content-center">
+            <% for(var i = 0; i < cols.length; i++) { %>
+                <!-- Portfolio Item 1-->
+                <div class="col-md-6 col-lg-4 mb-5">
+                    <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal2<%=i%>">
+                        <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                            <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                        </div>
+                        <img class="img-fluid" src="<%= cols[i].image %>" style="width:400px; height: 424px;"/>
+                        <div style="border: 1px solid #F5F5F5; border-radius: 0 0 25px 25px; width: 400px;">
+                            <div style="padding: 10px 10px">
+                                <table>
+                                    <tr>
+                                        <td><%= cols[i].type %></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span style="font-size: 2rem; font-weight: bold;"><%= cols[i].title %></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span style="font-size: 1.2rem;"><%= cols[i].address %></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span style="font-size: 2rem; color: orange;">★</span><span style="font-size: 1.5rem;"> <span style="color: orange; font-weight: bold;"><%= cols[i].score %></span> / 5.0 </span></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+    </div>
+</section>
+
+<!-- 관광지 -->
+<section class="page-section portfolio" id="portfolio">
+    <div class="container">
+        <!-- Portfolio Section Heading-->
+        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Tourlist</h2>
+        <!-- Icon Divider-->
+        <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+        <!-- Portfolio Grid Items-->
+        <div class="row justify-content-center">
+            <% for(var i = 0; i < cols.length; i++) { %>
+                <!-- Portfolio Item 1-->
+                <div class="col-md-6 col-lg-4 mb-5">
+                    <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal2<%=i%>">
+                        <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                            <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                        </div>
+                        <img class="img-fluid" src="<%= cols[i].img %>" style="width:400px; height: 424px;"/>
+                        <div style="border: 1px solid #F5F5F5; border-radius: 0 0 25px 25px; width: 400px;">
+                            <div style="padding: 10px 10px">
+                                <table>
+                                    <tr>
+                                        <td><%= cols[i].type %></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span style="font-size: 2rem; font-weight: bold;"><%= cols[i].title %></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span style="font-size: 1.2rem;"><%= cols[i].addr %></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span style="font-size: 2rem; color: orange;">★</span><span style="font-size: 1.5rem;"> <span style="color: orange; font-weight: bold;"><%= cols[i].score %></span> / 5.0 </span></td>
+
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+    </div>
+</section>
+
+<!-- Copyright Section-->
+<div class="copyright py-4 text-center text-white">
+    <div class="container"><small>Copyright &copy; Your Website 2022</small></div>
+</div>
+<!-- Portfolio Modals-->
+
+<!-- 관광지 상세 페이지-->
+<% for(var i = 0; i < cols.length; i++) { %>
+    <div class="portfolio-modal modal fade" id="portfolioModal2<%=i%>" tabindex="-1" aria-labelledby="portfolioModal2<%=i%>" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                <div class="modal-body text-center pb-5">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-10">
+                                <!-- Portfolio Modal - Title-->
+                                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0"><%= cols[i].title %></h2>
+                                <!-- Icon Divider-->
+                                <div class="divider-custom">
+                                    <div class="divider-custom-line"></div>
+                                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                    <div class="divider-custom-line"></div>
+                                </div>
+                                <!-- Portfolio Modal - Image-->
+                                <div style="display: flex;">
+                                    <img class="img-fluid rounded mb-5" src="<%= cols[i].image %>" style="width:500px; height:500px;" />
+                                    <div class="basic_container">
+                                        <table id="basic_table" style="border: 1px solid #cae7c1; text-align: center;">
+                                            <tr>
+                                                <th>관광지</th>
+                                                <td><%= cols[i].title %></td>
+                                            </tr>
+                                            <tr>
+                                                <th>테마</th>
+                                                <td><%= cols[i].type %></td>
+                                            </tr>
+                                            <tr>
+                                                <th>전화번호</th>
+                                                <td><%= cols[i].tel %></td>
+                                            </tr>
+                                            <tr>
+                                                <th>주소</th>
+                                                <td><%= cols[i].address %></td>
+                                            </tr>
+                                            <tr>
+                                                <th>평점</th>
+                                                <td><%= cols[i].score %> / 5.0</td>
+                                            </tr>
+                                            <tr>
+                                                <th>운영시간</th>
+                                                <td><%= cols[i].time %></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div>
+                                    <table id="detail_table" style="border: 1px solid #cae7c1; text-align: center;">
+                                        <tr>
+                                            <th>관광지 소식</th>
+                                            <td style="width: 800px;"><a href="<%= cols[i].insta %>"><%= cols[i].insta %></a></td>
+                                        </tr>
+                                        <tr>
+                                            <th>해시태그</th>
+                                            <td><%= cols[i].hashtag %></td>
+                                        </tr>
+                                        <tr>
+                                            <th>지역화폐</th>
+                                            <td><%= cols[i].wallet %></td>
+                                        </tr>
+                                        <tr>
+                                            <th>관광지 소개</th>
+                                            <td style="padding: 0 10px;"><%= cols[i].introduce %></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <button class="btn btn-secondary" style="margin-top: 50px;" type="submit" id="submit2_<%=i%>" value="<%= cols[i].idtourlist %>">
+                                    <i class="fas fa-omark fa-fw"></i>
+                                    찜하기
+                                </button>
+                                <!-- 찜하기 기능 -->
+                                <script>
+                                    $(function() {
+                                        $('#submit2_<%=i%>').click(function() {
+                                            alert("찜이 되었습니다. My Page에서 확인하세요!")
+                                            var tour_id = document.getElementById('submit2_<%=i%>').value;
+                                            $.ajax({
+                                                url: '/',
+                                                type: 'POST',
+                                                data: {data: 1, tour_id: tour_id},
+                                                success: function(data) {
+                                                    alert("찜하기 성공")
+                                                },
+                                                error: function(err) {
+                                                    alert("찜하기 실패")
+                                                }
+                                                
+                                            })
+                                        })
+                                    })
+                                </script>
+                                <!--  -->
+                                <button class="btn btn-primary" data-bs-dismiss="modal" style="margin-top: 50px;">
+                                    <i class="fas fa-xmark fa-fw"></i>
+                                    닫기
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% } %>
+
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="/js/scripts.js"></script>
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+    <!-- * *                               SB Forms JS                               * *-->
+    <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>

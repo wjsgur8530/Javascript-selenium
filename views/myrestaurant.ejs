@@ -1,0 +1,134 @@
+<%- include ('template/head.ejs') %>
+<%- include ('template/header.ejs') %>
+
+<%
+    var endPage = pasing.endPage;
+    var startPage = pasing.startPage;
+    var totalSet = pasing.totalSet;
+    var totalPage = pasing.totalPage;
+    var page_list_size = pasing.page_list_size;
+    var page_size = pasing.page_size;
+    var curPage = pasing.curPage;
+    var curSet = pasing.curPage;
+    var totalPage = pasing.totalPage;
+%>
+
+<body style="background-color: #f0f0f0">
+<div class="container-md" style="position:absolute; left: 50%; top: 55%; transform: translate(-50%,-50%); border: 1px solid black; background-color: white; height: 700px;">
+    <div class="mypage_title" style="display: flex;">
+        <h2 style="padding: 15px; font-weight: bold;">My Page</h2>
+        <nav style="--bs-breadcrumb-divider: '>'; position: absolute; right: 5%; top: 5%;" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/" style="text-decoration: none;">HOME</a></li>
+              <li class="breadcrumb-item active" aria-current="page">MY PAGE</li>
+              <li class="breadcrumb-item"><a href="/mypage/restaurant=1" style="text-decoration: none;">RESTAURANT</a></li>
+            </ol>
+          </nav>
+
+    </div>
+    <ul class="tabs">
+        <li class="tab-link current" data-tab="tab-1">찜하기된 맛집</li>
+    </ul>
+    <div id="tab-1" class="tab-content current">
+    <div class="col_group">
+        <table class="table_col_rest">
+            <colgroup>
+                <th style="width: 90px;"></th>
+                <th style="width: 170px;">음식점</th>
+                <th style="width: 125px;">종류</th>
+                <th style="width: 250px;">주소</th>
+                <th style="width: 140px;">휴무</th>
+                <th style="width: 125px;">영업시간</th>
+                <th style="width: 200px;">예약</th>
+                <th style="width: 140px;">전화번호</th>
+            </colgroup>
+        </table>
+    </div>
+    
+    <% for(var i = 0; i < result.length; i++) { %>
+        <div style="border: 1px solid #404040; display: flex;">
+            <img src="<%= result[i].img %>" style="width: 90px; height: 90px;">
+            <table style="width: 100%;" class="table_rest">
+                <tr>
+                    <td style="width: 170px;"><%= result[i].title %></td>
+                    <td style="width: 125px;"><%= result[i].type %></td>
+                    <td style="width: 250px;"><%= result[i].addr %></td>
+                    <td style="width: 140px;"><%= result[i].holiday %></td>
+                    <td style="width: 125px;"><%= result[i].time %></td>
+                    <td style="width: 200px;"><%= result[i].reservation %></td>
+                    <td style="width: 140px;"><%= result[i].tel %></td>
+                    
+                    <td><button type="submit" class="btn btn-danger" id="restaurant_delete<%=i%>" value="<%=result[i].idrestaurant%>">X</button></td>
+                </tr>
+            </table>
+        </div>
+        <!-- 찜하기 삭제 기능 -->
+        <script>
+            $(function() {
+                $('#restaurant_delete<%=i%>').click(function() {
+                    alert("찜이 삭제 되었습니다.")
+                    var rest_id = document.getElementById('restaurant_delete<%=i%>').value;
+                    $.ajax({
+                        url: '/mypage/restaurant=<%-i%>',
+                        type: 'POST',
+                        data: {rest_id: rest_id},
+                        success: function(data) {
+                            alert("찜하기 삭제 성공")
+                        },
+                        error: function(err) {
+                            alert("찜하기 삭제 실패")
+                        }
+                        
+                    })
+                })
+            })
+        </script>
+        <!--  -->
+    <% } %>
+    <div class="paging" style="position:absolute; bottom: 0; left: 50%; transform: translateX(-50%);">
+        <ul class="pagination">
+            <%  if(curSet > 1){ %>
+                <li class="page-item disabled"></li><a class="page-link" href="/mypage/restaurant=<%= (startPage) %>" tabindex="-1" aria-disabled="true"><</a></li>
+            <%  } %>
+            
+            <%  for(var i = startPage; i <= endPage; i++){ 
+                    if(i > totalPage){break;}
+                    if(i == curPage){
+            %>
+                <li class="page-item"><a class="page-link on" href="/mypage/restaurant=<%= i %>"><%= i %></a></li>
+            <%      }else{  %>
+                <li class="page-item"><a class="page-link" href="/mypage/restaurant=<%= i %>"><%= i %></a></li>
+            <%      }  %>
+            <%  } %>
+        
+            <% if(curSet < totalSet){ %>    
+                <li class="page-item"><a class="page-link" href="/mypage/restaurant=<%= endPage %>">></a></li>
+            <%  }  %>
+        </ul>
+    </div>
+    </div>
+
+    <div id="tab-2" class="tab-content">
+        
+    </div>
+</div>
+
+
+
+</body>
+
+<script>
+    $(document).ready(function(){
+        $('ul.tabs li').click(function(){
+            var tab_id = $(this).attr('data-tab');
+
+            $('ul.tabs li').removeClass('current');
+            $('.tab-content').removeClass('current');
+
+            $(this).addClass('current');
+            $("#"+tab_id).addClass('current');
+        });
+
+    });
+    
+  </script>

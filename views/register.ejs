@@ -1,0 +1,28 @@
+<%- include ('template/head.ejs') %>
+<%- include ('template/header.ejs') %>
+<body style="background-color: #f0f0f0;">
+<div class="container-md" style="position:absolute; left: 50%; top: 55%; transform: translate(-50%,-50%);">
+    <div style="display: flex; height: 600px; ">
+        <div class="register_container">        
+            <form action="/register" method="POST">
+                <div class="register-page">
+                    <div class="form" style="border: 1px solid #d3d3d3;">
+                        <h3>회원가입</h3>
+                    <form class="register-form" method="POST">
+                        <input type="text" id="id" class="id" name="id" placeholder="아이디 입력"/>
+                        <input id="name" name="name" type="text" style="cursor: auto;" class="name" placeholder="이름 입력" />
+                        <input id="pw" name="pw" type="password" class="pw" placeholder="비밀번호 입력"/>
+                        <input id="pw_a" name="pw_a" type="password" class="pw_a" placeholder="비밀번호 재입력"/>
+                        <button>create</button>
+                        <p class="message">Already registered? <a href="#">Sign In</a></p>
+                    </form>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="image_container">
+            <img src="/assets/img/충주2.jpg" class="img-fluid" style="height: 100%;">
+        </div>
+    </div>
+</div>
+</body>

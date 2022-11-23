@@ -1,0 +1,55 @@
+<!-- Navigation-->
+<nav class="navbar navbar-expand-lg text-uppercase fixed-top" id="mainNav">
+    <div class="container">
+        <a class="navbar-brand" href="/">Ju Topia</a>
+        <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            Menu
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ms-auto">
+                <div class="dropdown-1" style="margin-top: 15px;">
+                    <li class="nav-item mx-0 mx-lg-1"><a class="dropbtn-1" href="/tourlist" style="text-decoration: none;">관광지</a></li>
+                    <div class="dropdown-content-1">
+                        <h5 style="background-color: #404040; color: white; padding: 5px 5px;">Tourlist</h2>
+                        <div class="grid_cotainer" style="padding-left: 30px; padding-bottom: 10px;">
+                            <% for(i = 0; i < 16; i++) { %>
+                            <div class="grid_cell" data-bs-toggle="modal" data-bs-target="#portfolioModal<%=i%>" style="background-image: url('<%= cols[i].image %>'); background-size: cover;"><span class="grid_text"><%= cols[i].title %></span></div>
+                            <% } %>
+                        </div>
+                        <div>
+                            <a href="/tourlist" style="text-align: center;"><button class="btn btn-primary">모두 보기</button></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="dropdown-2" style="margin-top: 15px;">
+                    <li class="nav-item mx-0 mx-lg-1"><a class="dropbtn-2" href="/restaurant" style="text-decoration: none;">레스토랑</a></li>
+                    <div class="dropdown-content-2">
+                        <h5 style="background-color: #404040; color: white; padding: 5px 5px;">Restaurant</h2>
+                        <div class="grid_cotainer" style="padding-left: 30px; padding-bottom: 10px;">
+                            <% for(i = 0; i < 16; i++) { %>
+                            <div class="grid_cell" data-bs-toggle="modal" data-bs-target="#portfolioModal<%=i%>" style="background-image: url('<%= rows[i].img %>'); background-size: cover;"><span class="grid_text"><%= rows[i].title %></span></div>
+                            <% } %>
+                        </div>
+                        <div>
+                            <a href="/restaurant" style="text-align: center;"><button class="btn btn-primary">모두 보기</button></a>
+                        </div>
+                    </div>
+                </div>
+                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/register">회원가입</a></li>
+                <% if(status_session){ %>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/logout">로그아웃</a></li>
+                    <div class="dropdown-1" style="margin-top: 15px;">
+                        <li class="nav-item mx-0 mx-lg-1"><a class="dropbtn-1" href="/mypage/restaurant=1" style="text-decoration: none;">My Page</a></li>
+                        <div class="dropdown-content-1">
+                            <a href="/mypage/restaurant=1">찜하기된 맛집</a>
+                            <a href="/mypage/tourlist=1">찜하기된 관광지</a>
+                        </div>
+                    </div>
+                <% } else { %>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/login">로그인</a></li>
+                <% } %>
+            </ul>
+        </div>
+    </div>
+</nav>
